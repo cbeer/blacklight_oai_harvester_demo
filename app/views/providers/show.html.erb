@@ -25,6 +25,12 @@
   <%= @provider.set %>
 </p>
 
+<p>
+  <b><%= link_to "Records", records_path(:provider_id => @provider) %></b> (<%= @provider.records.count %>)
+</p>
+
+
+
 
 <%= link_to 'Edit', edit_provider_path(@provider) %> |
 <%= link_to 'Back', providers_path %>

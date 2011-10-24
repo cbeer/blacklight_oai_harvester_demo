@@ -2,7 +2,13 @@ class RecordsController < ApplicationController
   # GET /records
   # GET /records.json
   def index
-    @records = Record.all
+    @records = nil
+
+    if params[:provider_id]
+      @records = Record.find_all_by_provider_id(params[:provider_id])
+    else
+      @records = Record.all
+    end
 
     respond_to do |format|
       format.html # index.html.erb
