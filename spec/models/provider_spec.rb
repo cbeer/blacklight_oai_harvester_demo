@@ -18,4 +18,12 @@ describe Provider do
       provider.should_not be_valid
     end
   end
+
+  describe "#metadata_prefix" do
+    it "should use oai_dc by default" do
+      provider.metadata_prefix = nil
+      provider.metadata_prefix.should == 'oai_dc'
+    end
+
+  end
 end
