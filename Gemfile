@@ -29,6 +29,9 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+gem 'oai'
+gem 'libxml-ruby'
+
 group :test do
   gem 'rspec'
   gem 'rspec-rails'
