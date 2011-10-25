@@ -18,9 +18,9 @@ class Provider < ActiveRecord::Base
     count = 0
 
     begin
-      local_options = oai_client_options
+      local_options = {}
       local_options[:resumption_token] = response.resumption_token if response and response.resumption_token and not response.resumption_token.empty?
-      local_options.delete(:metadata_prefix) if local_options[:resumption_token]
+      local_options = oai_client_options if local_options.empty?
 
       response = client.list_records(local_options)
 
@@ -56,11 +56,23 @@ class Provider < ActiveRecord::Base
     read_attribute(:metadata_prefix) || 'oai_dc'
   end
 
+  def next_harvest_at
+    consumed_at + interval
+  end
+
+  def consumed_at
+    read_attribute(:consumed_at) || Time.at(1)
+  end
+
+  def interval
+    (read_attribute(:interval) || 1.day).seconds
+  end
+
   protected
   def oai_client_options
     options = {}
     options[:set] = set unless set.blank?
-  #  options[:from] = consumed_at.utc.xmlschema unless consumed_at.blank?
+    options[:from] = consumed_at.utc.xmlschema unless consumed_at.blank?
     options[:metadata_prefix] = metadata_prefix
 
     options

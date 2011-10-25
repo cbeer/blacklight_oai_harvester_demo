@@ -70,4 +70,26 @@ describe Provider do
       provider.metadata_prefix.should == 'oai_dc'
     end
   end
+
+  describe "#consumed_at" do
+    it "should be the epoch by default" do
+      provider.consumed_at = nil
+      provider.consumed_at.should == Time.at(1)
+    end
+  end
+
+  describe "#interval" do
+    it "should be 1 day by default" do
+      provider.interval = nil
+      provider.interval.should == 1.day
+    end
+  end
+
+  describe "#next_harvest_at" do
+    it "should be the sum of the interval and last consumed time" do
+      provider.consumed_at = '2001-01-01'.to_datetime
+      provider.interval = 1.day
+      provider.next_harvest_at.should == '2001-01-02'.to_datetime
+    end
+  end
 end
