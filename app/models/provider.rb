@@ -50,6 +50,10 @@ class Provider < ActiveRecord::Base
     count
   end
 
+  def name
+    read_attribute(:name) || endpoint_url
+  end
+
   def metadata_prefix
     read_attribute(:metadata_prefix) || 'oai_dc'
   end
