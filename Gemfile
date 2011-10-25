@@ -29,6 +29,7 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+gem 'jettywrapper'
 gem 'om'
 gem 'oai'
 gem 'libxml-ruby'
