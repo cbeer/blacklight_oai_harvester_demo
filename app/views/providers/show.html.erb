@@ -26,7 +26,7 @@
 </p>
 
 <p>
-  <b><%= link_to "Records", records_path(:provider_id => @provider) %></b> (<%= @provider.records.count %>)
+  <b><%= link_to "Records", catalog_index_path(:f => { :provider_id_i => @provider.id }) %></b>
 </p>
 
 

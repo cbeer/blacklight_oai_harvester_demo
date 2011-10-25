@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111025175037) do
+ActiveRecord::Schema.define(:version => 20111025181430) do
 
   create_table "bookmarks", :force => true do |t|
     t.integer  "user_id",     :null => false
@@ -32,16 +32,8 @@ ActiveRecord::Schema.define(:version => 20111025175037) do
     t.datetime "updated_at"
     t.datetime "consumed_at"
     t.integer  "interval"
+    t.string   "record_class"
   end
-
-  create_table "records", :force => true do |t|
-    t.text     "content"
-    t.integer  "provider_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "records", ["provider_id"], :name => "index_records_on_provider_id"
 
   create_table "searches", :force => true do |t|
     t.text     "query_params"

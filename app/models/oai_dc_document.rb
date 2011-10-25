@@ -49,4 +49,8 @@ class OaiDcDocument
   end
 
   include OaiPmhRecord
+
+  def update_index
+    Blacklight.solr.add self.to_solr, :add_attributes => {:commitWithin => 50}
+  end
 end

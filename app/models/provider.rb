@@ -1,6 +1,4 @@
 class Provider < ActiveRecord::Base
-  has_many :records
-
   validates :endpoint_url, :presence => true, :format => { :with => /^https?/, :message => "must be an http/https url"}
 
   before_save do
@@ -68,6 +66,21 @@ class Provider < ActiveRecord::Base
     (read_attribute(:interval) || 1.day).seconds
   end
 
+  def record_class
+    str = read_attribute(:record_class) || default_record_class_name
+    str.camelcase.constantize
+  rescue 
+    nil
+  end
+
+  def default_record_class_name
+    "#{metadata_prefix}_document"
+  end
+
+  def record_class= klass
+    self[:record_class] = klass.to_s
+  end
+
   protected
   def oai_client_options
     options = {}
@@ -79,7 +92,10 @@ class Provider < ActiveRecord::Base
   end
 
   def process_record xml
-    Record.create :content => xml.to_s, :provider => self
+    record = record_class.from_xml xml.to_s
+    record.provider = self
+    record.update_index
+    record
   end
 
 end

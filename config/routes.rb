@@ -5,8 +5,6 @@ BlacklightOaiHarvesterDemo::Application.routes.draw do
 
   devise_for :users
 
-  resources :records
-
   resources :providers
 
   # The priority is based upon order of creation:
