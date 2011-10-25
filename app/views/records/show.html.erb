@@ -1,8 +1,11 @@
 <p id="notice"><%= notice %></p>
 
+<h1><%= @record.title %></h1>
+<p><%= @record.description %></p>
+
 <p>
   <b>Content:</b>
-  <%= @record.content %>
+  <%= @record.content.to_xml %>
 </p>
 
 <p>
