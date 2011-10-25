@@ -29,6 +29,7 @@ gem 'jquery-rails'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+gem 'blacklight', :git => 'git://github.com/projectblacklight/blacklight.git', :branch => 'feature-config-refactor'
 gem 'jettywrapper'
 gem 'om'
 gem 'solrizer'
@@ -42,3 +43,4 @@ group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
 end
+gem "devise"
