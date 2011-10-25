@@ -31,6 +31,7 @@ gem 'jquery-rails'
 
 gem 'jettywrapper'
 gem 'om'
+gem 'solrizer'
 gem 'oai'
 gem 'libxml-ruby'
 

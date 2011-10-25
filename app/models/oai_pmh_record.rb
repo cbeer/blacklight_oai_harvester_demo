@@ -4,6 +4,7 @@ module OaiPmhRecord
   included do
     extend ClassAttributes
     include OM::XML::Document
+    include Solrizer::XML::TerminologyBasedSolrizer
     set_terminology do |t|
       t.root(:path => 'record', :namespace_prefix => nil)
 
