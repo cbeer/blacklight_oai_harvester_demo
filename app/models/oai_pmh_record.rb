@@ -9,7 +9,7 @@ module OaiPmhRecord
       t.root(:path => 'record', :namespace_prefix => nil)
 
       t.header(:namespace_prefix => nil) do
-        t.identifier :namespace_prefix => nil
+        t.identifier :namespace_prefix => nil, :index_as => [:searchable, :displayable]
         t.datestamp :namespace_prefix => nil
         t.setSpec :namespace_prefix => nil
       end
@@ -18,6 +18,7 @@ module OaiPmhRecord
         set_oai_metadata_terminology(t)
       end
 
+      t.record_identifier(:proxy => [:header, :identifier])
       add_oai_metadata_terminology_proxies(t)
     end
   end
