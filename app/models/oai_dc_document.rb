@@ -7,7 +7,8 @@ class OaiDcDocument
     end
 
     def dump(obj)
-      obj.to_xml
+      return obj.to_xml if obj.respond_to?(:to_xml)
+      obj
     end
   end
 
