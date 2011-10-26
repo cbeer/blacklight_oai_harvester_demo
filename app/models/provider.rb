@@ -11,6 +11,10 @@ class Provider < ActiveRecord::Base
     OAI::Client.new(self.endpoint_url, :parser => 'libxml')
   end
 
+  def granularity
+    client.identify.granularity
+  end
+
   def each_record(options = {}, &block)
     response = nil
     count = 0
@@ -89,7 +93,7 @@ class Provider < ActiveRecord::Base
   def oai_client_options
     options = {}
     options[:set] = set unless set.blank?
-    options[:from] = consumed_at.utc.xmlschema unless consumed_at.blank?
+    options[:from] = consumed_at.utc.xmlschema.to_s.slice(0,granularity.length) unless consumed_at.blank?
     options[:metadata_prefix] = metadata_prefix
 
     options
